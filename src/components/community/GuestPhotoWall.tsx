@@ -144,13 +144,13 @@ export function GuestPhotoWall() {
       {/* Header with Upload CTA */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
         <div className="space-y-1.5">
-          <span className="text-purple-700 text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
-            <Camera className="w-4 h-4 text-purple-600" /> Guest Photo Wall
+          <span className="text-purple-400 text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
+            <Camera className="w-4 h-4 text-purple-400" /> Guest Photo Wall
           </span>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 font-heading">
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-white font-heading">
             Party Vibe Gallery
           </h2>
-          <p className="text-slate-600 text-xs sm:text-sm max-w-2xl font-medium">
+          <p className="text-slate-300 text-xs sm:text-sm max-w-2xl font-medium">
             Real photos from recent celebrations. Share yours!
           </p>
         </div>
@@ -174,8 +174,8 @@ export function GuestPhotoWall() {
             onClick={() => { setSelectedTag(t); setShowAllPhotos(false); }}
             className={`text-[11px] sm:text-xs px-3.5 py-1.5 rounded-full border transition-all whitespace-nowrap cursor-pointer touch-manipulation shrink-0 font-bold ${
               selectedTag === t
-                ? 'bg-purple-600 border-purple-500 text-white shadow-sm'
-                : 'bg-slate-100 border-slate-200 text-slate-700 hover:border-slate-300'
+                ? 'bg-purple-600 border-purple-500 text-white shadow-md'
+                : 'bg-slate-900 border-white/10 text-slate-300 hover:border-purple-500/40'
             }`}
           >
             {t}
@@ -190,24 +190,24 @@ export function GuestPhotoWall() {
           return (
             <div
               key={photo.id}
-              className="glass-card overflow-hidden group hover:border-purple-400 transition-all flex flex-col justify-between border border-slate-200 bg-white shadow-sm"
+              className="glass-card overflow-hidden group hover:border-purple-500/50 transition-all flex flex-col justify-between border border-white/10 bg-slate-900/70 shadow-lg"
             >
               <div>
-                <div className="relative aspect-video overflow-hidden bg-slate-100">
+                <div className="relative aspect-video overflow-hidden bg-slate-950">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={photo.url}
                     alt={photo.caption}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90 group-hover:opacity-100"
                   />
-                  <span className="badge absolute top-3 left-3 bg-white/90 backdrop-blur-md text-slate-900 text-[10px] font-bold border border-slate-200 shadow-sm">
+                  <span className="badge absolute top-3 left-3 bg-slate-950/80 backdrop-blur-md text-white text-[10px] font-bold border border-white/20 shadow-md">
                     {photo.tag}
                   </span>
                   <button
                     type="button"
                     onClick={() => handleLike(photo.id)}
-                    className={`absolute top-3 right-3 p-2 rounded-full backdrop-blur-md transition-all cursor-pointer active:scale-90 touch-manipulation shadow-sm ${
-                      isLiked ? 'bg-pink-600 text-white' : 'bg-white/90 text-slate-700 hover:text-slate-900 border border-slate-200'
+                    className={`absolute top-3 right-3 p-2 rounded-full backdrop-blur-md transition-all cursor-pointer active:scale-90 touch-manipulation shadow-md ${
+                      isLiked ? 'bg-pink-600 text-white' : 'bg-slate-950/80 text-slate-300 hover:text-white border border-white/20'
                     }`}
                   >
                     <Heart className={`w-3.5 h-3.5 ${isLiked ? 'fill-white' : ''}`} />
@@ -215,14 +215,14 @@ export function GuestPhotoWall() {
                 </div>
 
                 <div className="p-3 sm:p-4 space-y-1.5">
-                  <p className="text-xs text-slate-700 leading-relaxed line-clamp-2 font-medium">
+                  <p className="text-xs text-slate-200 leading-relaxed line-clamp-2 font-medium">
                     "{photo.caption}"
                   </p>
                 </div>
               </div>
 
-              <div className="px-3 sm:px-4 pb-3 sm:pb-4 pt-2 flex items-center justify-between border-t border-slate-200 text-[11px] text-slate-500 font-medium">
-                <span className="font-bold text-purple-700">{photo.uploader}</span>
+              <div className="px-3 sm:px-4 pb-3 sm:pb-4 pt-2 flex items-center justify-between border-t border-white/10 text-[11px] text-slate-400 font-medium">
+                <span className="font-bold text-purple-300">{photo.uploader}</span>
                 <span>{photo.likes} Likes · {photo.date}</span>
               </div>
             </div>
@@ -236,7 +236,7 @@ export function GuestPhotoWall() {
           <button
             type="button"
             onClick={() => setShowAllPhotos(!showAllPhotos)}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-slate-200 bg-white text-xs font-bold text-slate-700 hover:text-slate-900 hover:border-purple-400 transition-all shadow-sm active:scale-95"
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-white/10 bg-slate-900 text-xs font-bold text-slate-300 hover:text-white hover:border-purple-500/50 transition-all shadow-md active:scale-95"
           >
             {showAllPhotos ? (
               <><ChevronUp className="w-3.5 h-3.5" /> Show less</>
@@ -249,53 +249,53 @@ export function GuestPhotoWall() {
 
       {/* Interactive Photo Upload Modal */}
       {isUploadOpen && (
-        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-md flex items-center justify-center p-4 animate-fade-in">
-          <div className="glass-card max-w-lg w-full p-6 sm:p-7 border border-purple-200 shadow-2xl relative space-y-5 bg-white rounded-2xl">
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 animate-fade-in">
+          <div className="glass-card max-w-lg w-full p-6 sm:p-7 border border-purple-500/30 shadow-2xl relative space-y-5 bg-slate-950 text-white rounded-2xl">
             <button
               type="button"
               onClick={() => {
                 setIsUploadOpen(false);
                 setPreviewImage(null);
               }}
-              className="absolute top-4 right-4 text-slate-500 hover:text-slate-900 p-2 cursor-pointer touch-manipulation rounded-xl hover:bg-slate-100"
+              className="absolute top-4 right-4 text-slate-400 hover:text-white p-2 cursor-pointer touch-manipulation rounded-xl hover:bg-slate-900"
             >
               <X className="w-5 h-5" />
             </button>
 
             <div className="space-y-1">
-              <span className="badge bg-purple-100 text-purple-800 text-xs px-2.5 py-0.5 font-bold">
+              <span className="badge bg-purple-500/20 text-purple-300 text-xs px-2.5 py-0.5 font-bold border border-purple-500/30">
                 Community Upload
               </span>
-              <h3 className="text-xl font-extrabold text-slate-900 font-heading">Add Your Party Photo</h3>
-              <p className="text-xs text-slate-600 font-medium">
+              <h3 className="text-xl font-extrabold text-white font-heading">Add Your Party Photo</h3>
+              <p className="text-xs text-slate-300 font-medium">
                 Upload a real moment from your gathering at Rent-A-Vibe 2BHK flat.
               </p>
             </div>
 
             {uploadSuccess ? (
               <div className="p-8 text-center space-y-2">
-                <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto animate-bounce" />
-                <h4 className="text-lg font-bold text-slate-900">Photo Added to Gallery!</h4>
-                <p className="text-xs text-slate-600 font-medium">Your celebration snapshot is now featured on the wall.</p>
+                <CheckCircle2 className="w-12 h-12 text-emerald-400 mx-auto animate-bounce" />
+                <h4 className="text-lg font-bold text-white">Photo Added to Gallery!</h4>
+                <p className="text-xs text-slate-300 font-medium">Your celebration snapshot is now featured on the wall.</p>
               </div>
             ) : (
               <form onSubmit={handleAddPhotoSubmit} className="space-y-4">
                 {/* File Dropzone */}
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                  <label className="block text-xs font-bold text-slate-200 mb-1.5">
                     Select Photo (JPEG, PNG)
                   </label>
-                  <label className="border-2 border-dashed border-slate-300 hover:border-purple-500 rounded-2xl p-5 flex flex-col items-center justify-center cursor-pointer bg-slate-50 transition-all text-center">
+                  <label className="border-2 border-dashed border-white/20 hover:border-purple-500 rounded-2xl p-5 flex flex-col items-center justify-center cursor-pointer bg-slate-900 transition-all text-center">
                     {previewImage ? (
-                      <div className="w-full h-36 rounded-xl overflow-hidden relative border border-slate-200">
+                      <div className="w-full h-36 rounded-xl overflow-hidden relative border border-white/10">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img src={previewImage} alt="Preview" className="w-full h-full object-cover" />
                       </div>
                     ) : (
                       <>
-                        <UploadCloud className="w-8 h-8 text-purple-600 mb-2" />
-                        <span className="text-xs font-bold text-slate-900">Click to browse or drop party photo</span>
-                        <span className="text-[10px] text-slate-500 mt-0.5">Living room, karaoke, or group selfie</span>
+                        <UploadCloud className="w-8 h-8 text-purple-400 mb-2" />
+                        <span className="text-xs font-bold text-white">Click to browse or drop party photo</span>
+                        <span className="text-[10px] text-slate-400 mt-0.5">Living room, karaoke, or group selfie</span>
                       </>
                     )}
                     <input
@@ -310,7 +310,7 @@ export function GuestPhotoWall() {
                 {/* Name & Occasion */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">
+                    <label className="block text-xs font-bold text-slate-200 mb-1">
                       Your Name / Group
                     </label>
                     <input
@@ -318,18 +318,18 @@ export function GuestPhotoWall() {
                       placeholder="e.g. Rahul & Squad"
                       value={uploaderName}
                       onChange={(e) => setUploaderName(e.target.value)}
-                      className="input-field text-xs border-slate-200 text-slate-900"
+                      className="input-field text-xs border-white/10 text-white bg-slate-900"
                       required
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">
+                    <label className="block text-xs font-bold text-slate-200 mb-1">
                       Occasion Tag
                     </label>
                     <select
                       value={tag}
                       onChange={(e) => setTag(e.target.value)}
-                      className="input-field text-xs border-slate-200 text-slate-900 bg-white"
+                      className="input-field text-xs border-white/10 text-white bg-slate-900"
                     >
                       <option value="Birthday Party">Birthday Party</option>
                       <option value="College Reunion">College Reunion</option>
@@ -342,7 +342,7 @@ export function GuestPhotoWall() {
 
                 {/* Caption */}
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">
+                  <label className="block text-xs font-bold text-slate-200 mb-1">
                     Short Story / Caption
                   </label>
                   <textarea
@@ -350,7 +350,7 @@ export function GuestPhotoWall() {
                     placeholder="Tell us what made your night special..."
                     value={caption}
                     onChange={(e) => setCaption(e.target.value)}
-                    className="input-field text-xs border-slate-200 text-slate-900"
+                    className="input-field text-xs border-white/10 text-white bg-slate-900"
                   />
                 </div>
 

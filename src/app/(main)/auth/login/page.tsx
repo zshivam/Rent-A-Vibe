@@ -116,18 +116,18 @@ export default function LoginPage() {
 
   return (
     <main className="min-h-[85vh] flex items-center justify-center container-page py-12 sm:py-16">
-      <div className="glass-card w-full max-w-md p-6 sm:p-10 space-y-6 animate-fade-in border border-slate-200 shadow-xl bg-white rounded-2xl">
+      <div className="glass-card w-full max-w-md p-6 sm:p-10 space-y-6 animate-fade-in border border-purple-500/30 shadow-2xl bg-slate-900/90 backdrop-blur-2xl text-white rounded-2xl">
         <div className="text-center space-y-2">
-          <div className="w-12 h-12 rounded-2xl bg-purple-100 border border-purple-200 flex items-center justify-center mx-auto text-purple-700 shadow-sm">
+          <div className="w-12 h-12 rounded-2xl bg-purple-950/80 border border-purple-500/40 flex items-center justify-center mx-auto text-purple-300 shadow-md">
             <Sparkles className="w-6 h-6" />
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-heading">Welcome back</h1>
-          <p className="text-slate-600 text-xs sm:text-sm font-medium">Sign in to manage your bookings and flat experiences</p>
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-white font-heading">Welcome back</h1>
+          <p className="text-slate-300 text-xs sm:text-sm font-medium">Sign in to manage your bookings and flat experiences</p>
         </div>
 
         {error && (
-          <div className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-start gap-2 animate-fade-in font-medium">
-            <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-red-600" />
+          <div className="p-3.5 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-xs flex items-start gap-2 animate-fade-in font-medium">
+            <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-red-400" />
             <span>{error}</span>
           </div>
         )}
@@ -137,11 +137,11 @@ export default function LoginPage() {
           type="button"
           onClick={handleGoogleLogin}
           disabled={googleLoading || loading || demoLoading}
-          className="w-full py-3 px-4 rounded-xl bg-slate-50 border border-slate-200 text-slate-800 font-bold text-sm flex items-center justify-center gap-3 hover:bg-slate-100 hover:border-slate-300 transition-all shadow-sm active:scale-[0.99] cursor-pointer"
+          className="w-full py-3 px-4 rounded-xl bg-slate-950 border border-white/10 text-white font-bold text-sm flex items-center justify-center gap-3 hover:bg-slate-800 transition-all shadow-md active:scale-[0.99] cursor-pointer"
         >
           {googleLoading ? (
             <>
-              <Loader2 className="w-4 h-4 animate-spin text-purple-600" />
+              <Loader2 className="w-4 h-4 animate-spin text-purple-400" />
               Connecting to Google...
             </>
           ) : (
@@ -174,7 +174,7 @@ export default function LoginPage() {
           type="button"
           onClick={handleDemoLogin}
           disabled={demoLoading || loading || googleLoading}
-          className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-700 text-white font-extrabold text-sm flex items-center justify-center gap-2 hover:opacity-95 transition-all shadow-md active:scale-[0.99] cursor-pointer"
+          className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-700 text-white font-extrabold text-sm flex items-center justify-center gap-2 hover:opacity-95 transition-all shadow-lg active:scale-[0.99] cursor-pointer"
         >
           {demoLoading ? (
             <>
@@ -191,15 +191,15 @@ export default function LoginPage() {
         </button>
 
         <div className="relative flex items-center justify-center">
-          <div className="border-t border-slate-200 w-full" />
-          <span className="bg-white px-3 text-[11px] text-slate-500 uppercase font-bold tracking-wider absolute">
+          <div className="border-t border-white/10 w-full" />
+          <span className="bg-slate-900 px-3 text-[11px] text-slate-400 uppercase font-bold tracking-wider absolute">
             Or continue with email
           </span>
         </div>
 
         <form onSubmit={handleLogin} className="space-y-4">
           <div>
-            <label className="block text-xs text-slate-700 mb-1.5 font-bold">
+            <label className="block text-xs text-slate-200 mb-1.5 font-bold">
               Email Address
             </label>
             <div className="relative">
@@ -210,13 +210,13 @@ export default function LoginPage() {
                 placeholder="you@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="input-field pl-10 text-xs sm:text-sm border-slate-200 text-slate-900"
+                className="input-field pl-10 text-xs sm:text-sm border-white/10 text-white bg-slate-950/90"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs text-slate-700 mb-1.5 font-bold">
+            <label className="block text-xs text-slate-200 mb-1.5 font-bold">
               Password
             </label>
             <div className="relative">
@@ -226,7 +226,7 @@ export default function LoginPage() {
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="input-field pl-10 text-xs sm:text-sm border-slate-200 text-slate-900"
+                className="input-field pl-10 text-xs sm:text-sm border-white/10 text-white bg-slate-950/90"
               />
             </div>
           </div>
@@ -247,9 +247,9 @@ export default function LoginPage() {
           </button>
         </form>
 
-        <p className="text-center text-xs text-slate-600 font-medium">
+        <p className="text-center text-xs text-slate-400 font-medium">
           Don't have an account?{' '}
-          <Link href="/auth/signup" className="text-purple-700 hover:text-purple-900 font-bold">
+          <Link href="/auth/signup" className="text-purple-400 hover:text-purple-300 font-bold">
             Sign up now
           </Link>
         </p>

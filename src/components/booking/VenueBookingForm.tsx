@@ -260,23 +260,23 @@ export function VenueBookingForm({
 
   if (success) {
     return (
-      <div className="glass-card p-6 sm:p-8 text-center animate-fade-in border border-emerald-300 bg-white">
-        <div className="w-16 h-16 rounded-full bg-emerald-100 border border-emerald-300 flex items-center justify-center mx-auto mb-4 text-emerald-600">
+      <div className="glass-card p-6 sm:p-8 text-center animate-fade-in border border-emerald-500/40 bg-slate-900/90 text-white">
+        <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center mx-auto mb-4 text-emerald-400">
           <CheckCircle className="w-10 h-10" />
         </div>
-        <h3 className="text-2xl font-extrabold text-slate-900 mb-2 font-heading">Venue Stay Reserved! 🎉</h3>
-        <p className="text-slate-600 text-sm mb-4 leading-relaxed">
-          Your reservation at <strong className="text-slate-900">{venueName}</strong> is confirmed.
+        <h3 className="text-2xl font-extrabold text-white mb-2 font-heading">Venue Stay Reserved! 🎉</h3>
+        <p className="text-slate-300 text-sm mb-4 leading-relaxed font-medium">
+          Your reservation at <strong className="text-white">{venueName}</strong> is confirmed.
           The flat manager will coordinate keyless access, lighting setup, and guest verification.
         </p>
-        <div className="bg-slate-50 rounded-xl p-4 text-left text-xs space-y-1.5 font-mono text-slate-700 mb-6 border border-slate-200">
-          <p><span className="text-slate-500 font-bold">Booking ID:</span> {bookingId}</p>
-          <p><span className="text-slate-500 font-bold">Date:</span> {selectedDate} ({isWeekend ? 'Weekend' : 'Weekday'})</p>
-          <p><span className="text-slate-500 font-bold">Slot:</span> {selectedSlotTier.name}</p>
-          <p><span className="text-slate-500 font-bold">Window:</span> {selectedSlotTier.time_window}</p>
-          <p><span className="text-slate-500 font-bold">Guests:</span> {guestCount} People</p>
-          <p><span className="text-slate-500 font-bold">Add-ons:</span> {selectedAddOns.length > 0 ? selectedAddOns.join(', ') : 'None'}</p>
-          <p><span className="text-slate-500 font-bold">Security Deposit:</span> {formatRupees(depositPaise)} (Refundable after checkout inspection)</p>
+        <div className="bg-slate-950 rounded-xl p-4 text-left text-xs space-y-1.5 font-mono text-slate-300 mb-6 border border-white/10">
+          <p><span className="text-slate-400 font-bold">Booking ID:</span> {bookingId}</p>
+          <p><span className="text-slate-400 font-bold">Date:</span> {selectedDate} ({isWeekend ? 'Weekend' : 'Weekday'})</p>
+          <p><span className="text-slate-400 font-bold">Slot:</span> {selectedSlotTier.name}</p>
+          <p><span className="text-slate-400 font-bold">Window:</span> {selectedSlotTier.time_window}</p>
+          <p><span className="text-slate-400 font-bold">Guests:</span> {guestCount} People</p>
+          <p><span className="text-slate-400 font-bold">Add-ons:</span> {selectedAddOns.length > 0 ? selectedAddOns.join(', ') : 'None'}</p>
+          <p><span className="text-slate-400 font-bold">Security Deposit:</span> {formatRupees(depositPaise)} (Refundable after checkout inspection)</p>
         </div>
         <a href="/dashboard" className="btn-primary w-full inline-flex justify-center py-3.5 text-sm font-extrabold">
           View in Dashboard
@@ -286,19 +286,19 @@ export function VenueBookingForm({
   }
 
   return (
-    <div className="glass-card p-4 sm:p-7 space-y-5 sm:space-y-6 border border-slate-200 shadow-xl bg-white">
+    <div className="cyber-glass p-4 sm:p-7 space-y-5 sm:space-y-6 border border-purple-500/30 shadow-2xl bg-slate-900/90 text-white backdrop-blur-2xl rounded-2xl">
       {/* Header Banner */}
       <div className="space-y-1">
         <div className="flex items-center justify-between">
-          <span className="badge bg-purple-100 text-purple-800 border border-purple-200 text-[10px] sm:text-xs px-2.5 py-0.5 inline-flex items-center gap-1 font-bold">
-            <Sparkles className="w-3 h-3 text-purple-600" /> Event Planner & Venue Booking
+          <span className="badge bg-purple-500/20 text-purple-300 border border-purple-500/30 text-[10px] sm:text-xs px-2.5 py-0.5 inline-flex items-center gap-1 font-bold">
+            <Sparkles className="w-3 h-3 text-purple-400" /> Event Planner & Venue Booking
           </span>
-          <span className={`text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded-md ${isWeekend ? 'bg-amber-100 text-amber-800 border border-amber-300' : 'bg-emerald-100 text-emerald-800 border border-emerald-300'}`}>
+          <span className={`text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded-md ${isWeekend ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40' : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'}`}>
             {isWeekend ? 'Weekend Rate' : 'Weekday Special'}
           </span>
         </div>
-        <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 pt-1 font-heading">Reserve Your 2BHK Party Stay</h3>
-        <p className="text-slate-600 text-xs font-medium">
+        <h3 className="text-xl sm:text-2xl font-extrabold text-white pt-1 font-heading">Reserve Your 2BHK Party Stay</h3>
+        <p className="text-slate-300 text-xs font-medium">
           Everything pre-installed & ready for 15–22 guests in Dwarka Sector 19.
         </p>
       </div>
@@ -306,10 +306,10 @@ export function VenueBookingForm({
       {/* 1. Date Selection */}
       <div className="space-y-2">
         <div className="flex items-center justify-between">
-          <label className="block text-xs font-bold text-slate-700 flex items-center gap-1.5">
-            <Calendar className="w-3.5 h-3.5 text-purple-600" /> 1. Select Celebration Date
+          <label className="block text-xs font-bold text-slate-200 flex items-center gap-1.5">
+            <Calendar className="w-3.5 h-3.5 text-purple-400" /> 1. Select Celebration Date
           </label>
-          <span className="text-[11px] text-purple-700 font-bold">
+          <span className="text-[11px] text-purple-300 font-bold">
             {selectedDate} ({isWeekend ? 'Weekend' : 'Weekday'})
           </span>
         </div>
@@ -336,8 +336,8 @@ export function VenueBookingForm({
                   onClick={() => setSelectedDate(dateToday)}
                   className={`py-2 px-2 text-xs rounded-xl font-bold border transition-all cursor-pointer touch-manipulation active:scale-95 text-center ${
                     selectedDate === dateToday
-                      ? 'bg-purple-600 border-purple-600 text-white shadow-md'
-                      : 'bg-slate-100 border-slate-200 text-slate-700 hover:border-slate-300'
+                      ? 'bg-purple-600 border-purple-500 text-white shadow-md'
+                      : 'bg-slate-900 border-white/10 text-slate-300 hover:border-purple-500/40'
                   }`}
                 >
                   Today
@@ -347,8 +347,8 @@ export function VenueBookingForm({
                   onClick={() => setSelectedDate(dateTomorrow)}
                   className={`py-2 px-2 text-xs rounded-xl font-bold border transition-all cursor-pointer touch-manipulation active:scale-95 text-center ${
                     selectedDate === dateTomorrow
-                      ? 'bg-purple-600 border-purple-600 text-white shadow-md'
-                      : 'bg-slate-100 border-slate-200 text-slate-700 hover:border-slate-300'
+                      ? 'bg-purple-600 border-purple-500 text-white shadow-md'
+                      : 'bg-slate-900 border-white/10 text-slate-300 hover:border-purple-500/40'
                   }`}
                 >
                   Tomorrow
@@ -358,8 +358,8 @@ export function VenueBookingForm({
                   onClick={() => setSelectedDate(dateSat)}
                   className={`py-2 px-2 text-xs rounded-xl font-bold border transition-all cursor-pointer touch-manipulation active:scale-95 text-center ${
                     selectedDate === dateSat
-                      ? 'bg-purple-600 border-purple-600 text-white shadow-md'
-                      : 'bg-slate-100 border-slate-200 text-slate-700 hover:border-slate-300'
+                      ? 'bg-purple-600 border-purple-500 text-white shadow-md'
+                      : 'bg-slate-900 border-white/10 text-slate-300 hover:border-purple-500/40'
                   }`}
                 >
                   This Sat
@@ -374,17 +374,17 @@ export function VenueBookingForm({
           min={today}
           value={selectedDate}
           onChange={(e) => setSelectedDate(e.target.value)}
-          className="input-field text-base sm:text-sm py-3 cursor-pointer border-slate-200 text-slate-900 bg-white"
+          className="input-field text-base sm:text-sm py-3 cursor-pointer border-white/10 text-white bg-slate-950/90"
         />
       </div>
 
       {/* 2. Slot & Stay Duration Selection */}
       <div className="space-y-2">
         <div className="flex items-center justify-between">
-          <label className="block text-xs font-bold text-slate-700 flex items-center gap-1.5">
-            <Clock className="w-3.5 h-3.5 text-purple-600" /> 2. Choose Time Slot / Stay Duration
+          <label className="block text-xs font-bold text-slate-200 flex items-center gap-1.5">
+            <Clock className="w-3.5 h-3.5 text-purple-400" /> 2. Choose Time Slot / Stay Duration
           </label>
-          <span className="text-[10px] text-purple-800 bg-purple-100 px-2 py-0.5 rounded border border-purple-200 font-bold">
+          <span className="text-[10px] text-purple-300 bg-purple-500/20 px-2 py-0.5 rounded border border-purple-500/30 font-bold">
             {selectedSlotTier.name}
           </span>
         </div>
@@ -400,8 +400,8 @@ export function VenueBookingForm({
                 onClick={() => setSelectedSlotTierId(tier.id)}
                 className={`p-3.5 rounded-xl border text-left transition-all flex items-center justify-between cursor-pointer active:scale-[0.98] touch-manipulation ${
                   isSelected
-                    ? 'bg-purple-50 border-purple-400 ring-2 ring-purple-500/50 shadow-md'
-                    : 'bg-slate-50 border-slate-200 hover:border-slate-300'
+                    ? 'bg-purple-950/60 border-purple-500 ring-2 ring-purple-500/40 shadow-lg text-white'
+                    : 'bg-slate-950/80 border-white/10 hover:border-purple-500/40 text-slate-300'
                 }`}
                 aria-pressed={isSelected}
               >
@@ -410,8 +410,8 @@ export function VenueBookingForm({
                   <div
                     className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors ${
                       isSelected
-                        ? 'border-purple-600 bg-purple-600 text-white'
-                        : 'border-slate-400 bg-white'
+                        ? 'border-purple-500 bg-purple-600 text-white'
+                        : 'border-slate-500 bg-slate-900'
                     }`}
                   >
                     {isSelected && <div className="w-2 h-2 rounded-full bg-white animate-scale-in" />}
@@ -419,7 +419,7 @@ export function VenueBookingForm({
 
                   <div className="min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <p className={`text-sm font-bold ${isSelected ? 'text-purple-900' : 'text-slate-900'}`}>
+                      <p className={`text-sm font-bold ${isSelected ? 'text-white' : 'text-slate-200'}`}>
                         {tier.name}
                       </p>
                       {tier.popular && (
@@ -428,16 +428,16 @@ export function VenueBookingForm({
                         </span>
                       )}
                     </div>
-                    <p className="text-[11px] text-slate-500 mt-0.5 font-medium">{tier.time_window}</p>
+                    <p className="text-[11px] text-slate-400 mt-0.5 font-medium">{tier.time_window}</p>
                   </div>
                 </div>
 
                 <div className="text-right shrink-0 pl-2">
-                  <p className={`text-sm font-extrabold font-heading ${isSelected ? 'text-purple-700' : 'text-slate-900'}`}>
+                  <p className={`text-sm font-extrabold font-heading ${isSelected ? 'text-purple-300' : 'text-white'}`}>
                     {formatRupees(tierPrice)}
                   </p>
                   {isSelected && (
-                    <span className="text-[9px] text-emerald-700 font-bold block">
+                    <span className="text-[9px] text-emerald-400 font-bold block">
                       ✓ Selected
                     </span>
                   )}
@@ -451,29 +451,29 @@ export function VenueBookingForm({
       {/* 3. Guests Cap */}
       <div>
         <div className="flex items-center justify-between mb-1.5">
-          <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
-            <Users className="w-3.5 h-3.5 text-purple-600" /> 3. Expected Guest Count
+          <label className="text-xs font-bold text-slate-200 flex items-center gap-1.5">
+            <Users className="w-3.5 h-3.5 text-purple-400" /> 3. Expected Guest Count
           </label>
-          <span className="text-xs text-slate-500 font-semibold">Max {capacityMax} guests</span>
+          <span className="text-xs text-slate-400 font-semibold">Max {capacityMax} guests</span>
         </div>
         <div className="flex items-center gap-3">
           <button
             type="button"
             disabled={guestCount <= 5}
             onClick={() => setGuestCount((c) => Math.max(5, c - 1))}
-            className="w-12 h-12 rounded-xl bg-slate-100 border border-slate-200 text-slate-900 font-black text-xl hover:bg-slate-200 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center active:scale-95 touch-manipulation shadow-sm"
+            className="w-12 h-12 rounded-xl bg-slate-950 border border-white/10 text-white font-black text-xl hover:bg-slate-800 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center active:scale-95 touch-manipulation shadow-sm"
             aria-label="Decrease guests"
           >
             -
           </button>
-          <span className="flex-1 text-center font-bold text-slate-900 text-base">
+          <span className="flex-1 text-center font-bold text-white text-base">
             {guestCount} Guests
           </span>
           <button
             type="button"
             disabled={guestCount >= capacityMax}
             onClick={() => setGuestCount((c) => Math.min(capacityMax, c + 1))}
-            className="w-12 h-12 rounded-xl bg-slate-100 border border-slate-200 text-slate-900 font-black text-xl hover:bg-slate-200 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center active:scale-95 touch-manipulation shadow-sm"
+            className="w-12 h-12 rounded-xl bg-slate-950 border border-white/10 text-white font-black text-xl hover:bg-slate-800 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center active:scale-95 touch-manipulation shadow-sm"
             aria-label="Increase guests"
           >
             +
@@ -482,24 +482,24 @@ export function VenueBookingForm({
       </div>
 
       {/* 4. INCLUDED WITH BOOKING FEATURE SHOWCASE */}
-      <div className="rounded-2xl border border-purple-200 bg-purple-50/50 p-3.5 sm:p-4 space-y-3">
+      <div className="rounded-2xl border border-purple-500/30 bg-purple-950/30 p-3.5 sm:p-4 space-y-3">
         <button
           type="button"
           onClick={() => setShowIncludedDetails(!showIncludedDetails)}
           className="w-full flex items-center justify-between cursor-pointer select-none text-left touch-manipulation"
         >
           <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded-md bg-purple-100 text-purple-700 flex items-center justify-center">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+            <div className="w-6 h-6 rounded-md bg-purple-900/60 border border-purple-500/40 text-purple-300 flex items-center justify-center">
+              <CheckCircle2 className="w-4 h-4 text-emerald-400" />
             </div>
             <div>
-              <p className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
-                Features Included in Booking <span className="text-purple-700 font-bold text-[11px]">(All-Inclusive)</span>
+              <p className="text-xs font-bold text-white flex items-center gap-1.5">
+                Features Included in Booking <span className="text-purple-300 font-bold text-[11px]">(All-Inclusive)</span>
               </p>
-              <p className="text-[10px] text-slate-600 font-medium">Pre-installed and fully tested inside the flat</p>
+              <p className="text-[10px] text-slate-300 font-medium">Pre-installed and fully tested inside the flat</p>
             </div>
           </div>
-          <div className="text-slate-500 p-1">
+          <div className="text-slate-400 p-1">
             {showIncludedDetails ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
           </div>
         </button>
@@ -509,19 +509,19 @@ export function VenueBookingForm({
             {INCLUDED_BOOKING_FEATURES.map((item) => (
               <div
                 key={item.name}
-                className="p-2.5 rounded-xl bg-white border border-slate-200 flex items-start gap-2.5 shadow-sm"
+                className="p-2.5 rounded-xl bg-slate-950/80 border border-white/10 flex items-start gap-2.5 shadow-sm"
               >
-                <div className="w-7 h-7 rounded-lg bg-purple-100 border border-purple-200 text-purple-700 flex items-center justify-center shrink-0 mt-0.5">
+                <div className="w-7 h-7 rounded-lg bg-purple-950/80 border border-purple-500/30 text-purple-300 flex items-center justify-center shrink-0 mt-0.5">
                   <item.icon className="w-3.5 h-3.5" />
                 </div>
                 <div className="space-y-0.5 min-w-0">
                   <div className="flex items-center justify-between gap-1">
-                    <p className="text-xs font-bold text-slate-900 truncate">{item.name}</p>
-                    <span className="text-[9px] font-bold text-purple-800 bg-purple-100 px-1.5 py-0.2 rounded border border-purple-200 shrink-0">
+                    <p className="text-xs font-bold text-white truncate">{item.name}</p>
+                    <span className="text-[9px] font-bold text-purple-300 bg-purple-500/20 px-1.5 py-0.2 rounded border border-purple-500/30 shrink-0">
                       Included
                     </span>
                   </div>
-                  <p className="text-[10px] text-slate-600 leading-tight line-clamp-2">
+                  <p className="text-[10px] text-slate-300 leading-tight line-clamp-2">
                     {item.summary}
                   </p>
                 </div>
@@ -530,8 +530,8 @@ export function VenueBookingForm({
           </div>
         )}
 
-        <div className="text-[10px] text-slate-600 bg-white px-3 py-1.5 rounded-lg border border-slate-200 flex items-center gap-1.5 shadow-sm">
-          <HelpCircle className="w-3.5 h-3.5 text-amber-600 shrink-0" />
+        <div className="text-[10px] text-slate-300 bg-slate-950/80 px-3 py-1.5 rounded-lg border border-white/10 flex items-center gap-1.5 shadow-sm">
+          <HelpCircle className="w-3.5 h-3.5 text-amber-400 shrink-0" />
           <span>
             <strong>Note:</strong> Buffet food warmers and Bar station are available below as optional add-on packs.
           </span>
@@ -541,10 +541,10 @@ export function VenueBookingForm({
       {/* 5. EXTRA ADD-ONS (With Image, Plus/Check buttons, and More Info dropdowns) */}
       <div className="space-y-3">
         <div className="flex items-center justify-between">
-          <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
-            <Sparkles className="w-3.5 h-3.5 text-purple-600" /> 4. Custom Add-On Packs (Optional)
+          <label className="text-xs font-bold text-slate-200 flex items-center gap-1.5">
+            <Sparkles className="w-3.5 h-3.5 text-purple-400" /> 4. Custom Add-On Packs (Optional)
           </label>
-          <span className="text-[10px] text-amber-800 font-bold bg-amber-100 px-2 py-0.5 rounded border border-amber-300">
+          <span className="text-[10px] text-amber-300 font-bold bg-amber-500/20 px-2 py-0.5 rounded border border-amber-500/30">
             Tap + to Add
           </span>
         </div>
@@ -559,8 +559,8 @@ export function VenueBookingForm({
                 key={addon.id}
                 className={`rounded-2xl border transition-all overflow-hidden ${
                   isAdded
-                    ? 'bg-purple-50 border-purple-400 ring-1 ring-purple-500/50 shadow-md'
-                    : 'bg-slate-50 border-slate-200 hover:border-slate-300'
+                    ? 'bg-purple-950/50 border-purple-500 ring-1 ring-purple-500/40 shadow-lg'
+                    : 'bg-slate-950/80 border-white/10 hover:border-purple-500/40'
                 }`}
               >
                 <div className="p-3.5 flex items-start gap-3">
@@ -569,14 +569,14 @@ export function VenueBookingForm({
                     <button
                       type="button"
                       onClick={() => toggleAddOn(addon.id)}
-                      className="w-16 h-16 rounded-xl overflow-hidden bg-slate-100 border border-slate-200 shrink-0 relative cursor-pointer active:scale-95 transition-transform text-left p-0 touch-manipulation shadow-sm"
+                      className="w-16 h-16 rounded-xl overflow-hidden bg-slate-950 border border-white/10 shrink-0 relative cursor-pointer active:scale-95 transition-transform text-left p-0 touch-manipulation shadow-sm"
                       aria-label={`Toggle ${addon.name}`}
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={addon.image_url}
                         alt={addon.name}
-                        className="w-full h-full object-cover pointer-events-none"
+                        className="w-full h-full object-cover pointer-events-none opacity-90 hover:opacity-100"
                       />
                     </button>
                   )}
@@ -596,16 +596,16 @@ export function VenueBookingForm({
                       className="cursor-pointer select-none touch-manipulation"
                     >
                       <div className="flex items-center gap-2 flex-wrap">
-                        <p className={`text-xs font-bold ${isAdded ? 'text-purple-900' : 'text-slate-900'}`}>
+                        <p className={`text-xs font-bold ${isAdded ? 'text-purple-200' : 'text-white'}`}>
                           {addon.name}
                         </p>
                         {addon.badge && (
-                          <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-amber-100 text-amber-800 border border-amber-300">
+                          <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">
                             {addon.badge}
                           </span>
                         )}
                       </div>
-                      <p className="text-[11px] text-slate-600 leading-tight line-clamp-2 mt-0.5">
+                      <p className="text-[11px] text-slate-300 leading-tight line-clamp-2 mt-0.5">
                         {addon.description}
                       </p>
                     </div>
@@ -617,14 +617,14 @@ export function VenueBookingForm({
                           e.stopPropagation();
                           toggleDetails(addon.id);
                         }}
-                        className="text-[10px] font-bold text-purple-700 hover:text-purple-900 flex items-center gap-1 py-1 px-1 -ml-1 cursor-pointer touch-manipulation active:opacity-70"
+                        className="text-[10px] font-bold text-purple-400 hover:text-purple-300 flex items-center gap-1 py-1 px-1 -ml-1 cursor-pointer touch-manipulation active:opacity-70"
                       >
-                        <Info className="w-3 h-3 text-purple-600" />
+                        <Info className="w-3 h-3 text-purple-400" />
                         {isExpanded ? 'Hide items' : 'View more items'}
                         {isExpanded ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
                       </button>
 
-                      <span className="text-xs font-black text-purple-700 font-heading">
+                      <span className="text-xs font-black text-amber-400 font-heading">
                         +{formatRupees(addon.price_paise)}
                       </span>
                     </div>
@@ -640,7 +640,7 @@ export function VenueBookingForm({
                     className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold transition-all shrink-0 cursor-pointer active:scale-95 touch-manipulation ${
                       isAdded
                         ? 'bg-emerald-600 text-white shadow-md'
-                        : 'bg-white border border-slate-200 text-slate-700 hover:bg-purple-600 hover:text-white hover:border-purple-600'
+                        : 'bg-slate-900 border border-white/10 text-slate-300 hover:bg-purple-600 hover:text-white hover:border-purple-600'
                     }`}
                     title={isAdded ? 'Remove add-on' : 'Add to booking'}
                     aria-label={isAdded ? `Remove ${addon.name}` : `Add ${addon.name}`}
@@ -651,14 +651,14 @@ export function VenueBookingForm({
 
                 {/* Expanded Details List */}
                 {isExpanded && addon.details && (
-                  <div className="px-4 pb-3.5 pt-1 border-t border-slate-200 bg-white text-xs text-slate-700 space-y-1.5 animate-fade-in">
-                    <p className="text-[10px] uppercase font-bold text-slate-500 tracking-wider">
+                  <div className="px-4 pb-3.5 pt-1 border-t border-white/10 bg-slate-950/90 text-xs text-slate-300 space-y-1.5 animate-fade-in">
+                    <p className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">
                       Included in this pack:
                     </p>
                     <ul className="space-y-1 text-[11px]">
                       {addon.details.map((detail, idx) => (
-                        <li key={idx} className="flex items-start gap-1.5 text-slate-700 font-medium">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                        <li key={idx} className="flex items-start gap-1.5 text-slate-300 font-medium">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
                           <span>{detail}</span>
                         </li>
                       ))}
@@ -672,46 +672,46 @@ export function VenueBookingForm({
       </div>
 
       {/* 6. Complete Single-Checkout Price Breakdown */}
-      <div className="rounded-2xl bg-slate-50 border border-slate-200 p-4 space-y-2 text-sm shadow-sm">
-        <div className="flex justify-between text-slate-700 font-medium">
+      <div className="rounded-2xl bg-slate-950/90 border border-white/10 p-4 space-y-2 text-sm shadow-md">
+        <div className="flex justify-between text-slate-300 font-medium">
           <span>{selectedSlotTier.name} ({isWeekend ? 'Weekend' : 'Weekday'})</span>
-          <span className="font-bold text-slate-900 font-heading">{formatRupees(rentalFee)}</span>
+          <span className="font-bold text-white font-heading">{formatRupees(rentalFee)}</span>
         </div>
 
-        <div className="flex justify-between text-slate-600 text-xs">
-          <span className="flex items-center gap-1 text-purple-700 font-semibold">
-            <Check className="w-3 h-3 text-purple-600" /> Karaoke, Cinema, DJ Sound & AC Bedrooms
+        <div className="flex justify-between text-slate-400 text-xs">
+          <span className="flex items-center gap-1 text-purple-400 font-semibold">
+            <Check className="w-3 h-3 text-purple-400" /> Karaoke, Cinema, DJ Sound & AC Bedrooms
           </span>
-          <span className="font-bold text-purple-700">Included</span>
+          <span className="font-bold text-purple-400">Included</span>
         </div>
 
         {addOnsFee > 0 && (
-          <div className="flex justify-between text-slate-700 font-medium">
+          <div className="flex justify-between text-slate-300 font-medium">
             <span>Selected Add-Ons ({selectedAddOns.length})</span>
-            <span className="font-bold text-purple-700 font-heading">+{formatRupees(addOnsFee)}</span>
+            <span className="font-bold text-amber-400 font-heading">+{formatRupees(addOnsFee)}</span>
           </div>
         )}
 
-        <div className="flex justify-between items-center text-slate-700 font-medium">
-          <span className="flex items-center gap-1.5 text-xs text-slate-600">
-            <Shield className="w-3.5 h-3.5 text-emerald-600" /> Security Deposit (Refundable)
+        <div className="flex justify-between items-center text-slate-300 font-medium">
+          <span className="flex items-center gap-1.5 text-xs text-slate-400">
+            <Shield className="w-3.5 h-3.5 text-emerald-400" /> Security Deposit (Refundable)
           </span>
-          <span className="font-bold text-emerald-700 font-heading">{formatRupees(depositPaise)}</span>
+          <span className="font-bold text-emerald-400 font-heading">{formatRupees(depositPaise)}</span>
         </div>
 
-        <div className="border-t border-slate-200 pt-2.5 flex justify-between font-black text-base text-slate-900">
+        <div className="border-t border-white/10 pt-2.5 flex justify-between font-black text-base text-white">
           <span className="font-heading">Total Single Checkout</span>
-          <span className="text-purple-700 text-lg font-heading">{formatRupees(totalAmount)}</span>
+          <span className="text-purple-300 text-lg font-heading">{formatRupees(totalAmount)}</span>
         </div>
 
-        <p className="text-[11px] text-slate-500 leading-tight pt-1">
+        <p className="text-[11px] text-slate-400 leading-tight pt-1">
           {formatRupees(depositPaise)} deposit is refunded within 12 hours post-event after morning space inspection.
         </p>
       </div>
 
       {error && (
-        <div className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-start gap-2 animate-fade-in font-medium">
-          <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-red-600" />
+        <div className="p-3.5 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-xs flex items-start gap-2 animate-fade-in font-medium">
+          <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-red-400" />
           <span>{error}</span>
         </div>
       )}
@@ -733,7 +733,7 @@ export function VenueBookingForm({
         )}
       </button>
 
-      <div className="text-[11px] text-slate-500 text-center space-y-1 font-medium">
+      <div className="text-[11px] text-slate-400 text-center space-y-1 font-medium">
         <p>🔒 100% Private Venue · Direct host booking</p>
         <p>No unexpected platform fees · Full equipment included</p>
       </div>
