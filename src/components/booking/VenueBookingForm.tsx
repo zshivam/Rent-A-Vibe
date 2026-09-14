@@ -291,13 +291,13 @@ export function VenueBookingForm({
       <div className="space-y-1">
         <div className="flex items-center justify-between">
           <span className="badge bg-purple-500/20 text-purple-300 border border-purple-500/30 text-[10px] sm:text-xs px-2.5 py-0.5 inline-flex items-center gap-1 font-bold">
-            <Sparkles className="w-3 h-3 text-purple-400" /> Event Planner & Venue Booking
+            <Sparkles className="w-3 h-3 text-purple-400" /> Instant Slot Reservation · Dwarka Sec 19
           </span>
           <span className={`text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded-md ${isWeekend ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40' : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'}`}>
             {isWeekend ? 'Weekend Rate' : 'Weekday Special'}
           </span>
         </div>
-        <h3 className="text-xl sm:text-2xl font-extrabold text-white pt-1 font-heading">Reserve Your 2BHK Party Stay</h3>
+        <h3 className="text-xl sm:text-2xl font-extrabold text-white pt-1 font-heading">Reserve The 2BHK Party Flat</h3>
         <p className="text-slate-300 text-xs font-medium">
           Everything pre-installed & ready for 15–22 guests in Dwarka Sector 19.
         </p>

@@ -47,16 +47,20 @@ import {
   BedDouble,
   ShieldAlert,
   Info,
+  Activity,
+  Sliders,
+  CheckCircle,
 } from 'lucide-react';
 
-// ── Section Nav Config ─────────────────────────────────────────
+// ── Section-by-Section Navigation Config ─────────────────────────
 const SECTION_LINKS = [
-  { id: 'overview', label: 'Overview',     icon: Home },
-  { id: 'included', label: 'Amenities',    icon: Sparkles },
-  { id: 'addons',   label: 'Add-Ons',      icon: Utensils },
-  { id: 'booking',  label: 'Instant Book', icon: Calendar },
-  { id: 'gallery',  label: 'Photos',       icon: Camera },
-  { id: 'reviews',  label: 'Reviews',      icon: Star },
+  { id: 'overview', label: '01. Overview',        icon: Home },
+  { id: 'specs',    label: '02. Specifications',  icon: Info },
+  { id: 'included', label: '03. Experience Zones',icon: Sparkles },
+  { id: 'booking',  label: '04. Instant Book',    icon: Calendar },
+  { id: 'addons',   label: '05. Party Add-Ons',    icon: Utensils },
+  { id: 'reviews',  label: '06. Guest Reviews',    icon: Star },
+  { id: 'gallery',  label: '07. Photo Gallery',    icon: Camera },
 ];
 
 // ── Experience Zones Data ──────────────────────────────────────
@@ -137,10 +141,10 @@ export default function HomePage() {
 
   useEffect(() => {
     const onScroll = () => {
-      setNavSticky(window.scrollY > 360);
+      setNavSticky(window.scrollY > 280);
       for (const { id } of [...SECTION_LINKS].reverse()) {
         const el = document.getElementById(id);
-        if (el && el.getBoundingClientRect().top <= 140) {
+        if (el && el.getBoundingClientRect().top <= 160) {
           setActiveSection(id);
           break;
         }
@@ -163,7 +167,7 @@ export default function HomePage() {
   };
 
   return (
-    <main className="relative overflow-x-hidden pb-24 sm:pb-0 bg-[#08090e]">
+    <main className="relative overflow-x-hidden pb-24 sm:pb-0 bg-[#08090e] text-white">
 
       {/* ── AMBIENT CANVAS BACKGROUND ── */}
       <PartyVibeCanvas />
@@ -175,67 +179,102 @@ export default function HomePage() {
         venue={venue}
       />
 
-      {/* ── STICKY SECTION QUICK-NAV (mobile only) ── */}
+      {/* ── STICKY SECTION DOCK / QUICK-NAV ── */}
       <div
-        className={`fixed top-16 left-0 right-0 z-40 sm:hidden transition-all duration-300 ${
+        className={`fixed top-16 sm:top-20 left-0 right-0 z-40 transition-all duration-300 ${
           navSticky ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'
         }`}
       >
-        <div className="bg-slate-950/90 backdrop-blur-xl border-b border-white/10 shadow-2xl">
-          <div className="flex items-center gap-1.5 px-3 py-2 overflow-x-auto scrollbar-none">
-            {SECTION_LINKS.map(({ id, label, icon: Icon }) => (
-              <button
-                key={id}
-                type="button"
-                onClick={() => scrollTo(id)}
-                className={`text-[11px] font-semibold px-3.5 py-1.5 rounded-full border whitespace-nowrap shrink-0 transition-all flex items-center gap-1.5 ${
-                  activeSection === id
-                    ? 'bg-purple-600 border-purple-500 text-white shadow-md'
-                    : 'bg-slate-900 border-white/10 text-slate-300 hover:text-white'
-                }`}
-              >
-                <Icon className="w-3 h-3" />
-                {label}
-              </button>
-            ))}
+        <div className="bg-slate-950/90 backdrop-blur-2xl border-b border-white/10 shadow-2xl">
+          <div className="container-page flex items-center justify-between py-2.5 overflow-x-auto scrollbar-none gap-2">
+            <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none">
+              {SECTION_LINKS.map(({ id, label, icon: Icon }) => (
+                <button
+                  key={id}
+                  type="button"
+                  onClick={() => scrollTo(id)}
+                  className={`text-[11px] font-bold px-3.5 py-1.5 rounded-full border whitespace-nowrap shrink-0 transition-all flex items-center gap-1.5 cursor-pointer ${
+                    activeSection === id
+                      ? 'bg-purple-600 border-purple-500 text-white shadow-md'
+                      : 'bg-slate-900 border-white/10 text-slate-300 hover:text-white hover:border-purple-500/40'
+                  }`}
+                >
+                  <Icon className="w-3.5 h-3.5" />
+                  {label}
+                </button>
+              ))}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => scrollTo('booking')}
+              className="btn-primary text-xs py-1.5 px-4 rounded-xl shrink-0 hidden sm:inline-flex items-center gap-1.5"
+            >
+              <Zap className="w-3.5 h-3.5 fill-white" />
+              <span>Reserve Venue</span>
+            </button>
           </div>
         </div>
       </div>
 
       {/* ══════════════════════════════════════════
-          AIRBNB LUXE STYLE HERO SECTION
+          SECTION 01: VENUE OVERVIEW & HIGHLIGHTS
       ══════════════════════════════════════════ */}
-      <section id="overview" className="relative z-10 pt-4 sm:pt-8 pb-8 sm:pb-16 border-b border-white/10">
+      <section id="overview" className="relative z-10 pt-4 sm:pt-8 pb-12 sm:pb-20 border-b border-white/10">
         
         {/* Ambient background glows */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[300px] sm:w-[750px] h-[300px] sm:h-[750px] rounded-full bg-purple-600/15 blur-[140px] pointer-events-none" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[320px] sm:w-[850px] h-[320px] sm:h-[850px] rounded-full bg-purple-600/15 blur-[150px] pointer-events-none" />
 
-        <div className="container-page relative z-10 space-y-4 sm:space-y-6">
+        <div className="container-page relative z-10 space-y-6">
+
+          {/* Live Venue Status Bar */}
+          <div className="glass-card p-3 sm:p-3.5 border border-purple-500/30 bg-purple-950/40 backdrop-blur-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-lg">
+            <div className="flex items-center gap-2.5 text-xs font-bold">
+              <span className="relative flex h-3 w-3 shrink-0">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500" />
+              </span>
+              <span className="text-white tracking-wide font-mono uppercase">
+                FLAT STATUS: <strong className="text-emerald-400">ONLINE & READY TODAY</strong>
+              </span>
+              <span className="hidden md:inline text-slate-400 font-normal">|</span>
+              <span className="hidden md:inline text-slate-300 font-medium">
+                Dual Karaoke, 100" Cinema & AC Master Beds Disinfected
+              </span>
+            </div>
+
+            <div className="flex items-center gap-2 shrink-0 text-[11px] font-bold text-purple-300">
+              <ShieldCheck className="w-3.5 h-3.5 text-purple-400" />
+              <span>Pre-Equipped Venue · Keyless Self Check-In</span>
+            </div>
+          </div>
           
-          {/* Listing Title & Share/Save Action Bar */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 border-b border-white/10 pb-4">
-            <div>
-              <div className="flex items-center gap-2 mb-1.5">
+          {/* Header Title */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/10 pb-6">
+            <div className="space-y-3 max-w-3xl">
+              <div className="flex items-center gap-2 flex-wrap">
                 <span className="badge bg-purple-500/20 border border-purple-500/40 text-purple-300 text-[10px] sm:text-xs font-bold">
-                  ENTIRE PARTY FLAT IN NEW DELHI
+                  01. VENUE OVERVIEW
                 </span>
                 <span className="badge bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-[10px] sm:text-xs font-bold">
-                  SUPERHOST
+                  DWARKA SECTOR 19 · NEW DELHI
                 </span>
               </div>
               
-              <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white font-heading">
-                The Dwarka Party Flat | Private 2BHK + Karaoke & 100" Cinema
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white font-heading leading-[1.1]">
+                The Dwarka Party Flat | <span className="text-gradient-purple">Private 2BHK & Sound Zone.</span>
               </h1>
 
-              <div className="flex items-center gap-3 text-xs sm:text-sm text-slate-300 mt-2 font-medium">
+              <div className="flex items-center gap-3 text-xs sm:text-sm text-slate-300 pt-1 font-medium flex-wrap">
                 <span className="flex items-center gap-1 font-bold text-amber-400">
-                  <Star className="w-4 h-4 fill-amber-400 text-amber-400" /> 5.0 · 180+ Stays
+                  <Star className="w-4 h-4 fill-amber-400 text-amber-400" /> 5.0 ★ Rating (180+ Celebrations Hosted)
                 </span>
                 <span>·</span>
                 <span className="flex items-center gap-1 text-slate-300">
-                  <MapPin className="w-3.5 h-3.5 text-purple-400" /> Dwarka Sector 19, New Delhi, India
+                  <MapPin className="w-3.5 h-3.5 text-purple-400" /> 5 Mins from Metro · Dwarka Sec 19
                 </span>
+                <span>·</span>
+                <span className="text-emerald-400 font-bold">Keyless Lockbox Check-in</span>
               </div>
             </div>
 
@@ -244,25 +283,44 @@ export default function HomePage() {
               <button
                 type="button"
                 onClick={handleShare}
-                className="btn-ghost text-xs py-2 px-3 flex items-center gap-1.5"
+                className="btn-ghost text-xs py-2.5 px-4 flex items-center gap-1.5"
               >
-                <Share2 className="w-3.5 h-3.5 text-slate-300" />
-                <span>{copied ? 'Link Copied!' : 'Share'}</span>
+                <Share2 className="w-4 h-4 text-slate-300" />
+                <span>{copied ? 'Link Copied!' : 'Share Page'}</span>
               </button>
               <button
                 type="button"
                 onClick={() => setSaved(!saved)}
-                className={`btn-ghost text-xs py-2 px-3 flex items-center gap-1.5 ${
+                className={`btn-ghost text-xs py-2.5 px-4 flex items-center gap-1.5 ${
                   saved ? 'text-pink-400 border-pink-500/40 bg-pink-500/10' : ''
                 }`}
               >
-                <Heart className={`w-3.5 h-3.5 ${saved ? 'fill-pink-500 text-pink-500' : ''}`} />
+                <Heart className={`w-4 h-4 ${saved ? 'fill-pink-500 text-pink-500' : ''}`} />
                 <span>{saved ? 'Saved' : 'Save'}</span>
               </button>
             </div>
           </div>
 
-          {/* Airbnb Style Photo Showcase Grid */}
+          {/* Key Venue Features Bar */}
+          <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+            {[
+              { icon: Music, label: 'Wireless Karaoke', desc: 'Dual UHF Reverb Mics' },
+              { icon: Tv,    label: '100" HD Cinema',   desc: 'Smart 1080p Projector' },
+              { icon: Disc,  label: '160W Sound Box',   desc: 'High-Bass Bluetooth' },
+              { icon: Zap,   label: 'Neon Lounge',      desc: 'Dimmable Ambient Lights' },
+              { icon: BedDouble, label: '2 Master Beds', desc: 'AC + Attached Baths' },
+            ].map(({ icon: Icon, label, desc }, idx) => (
+              <div key={idx} className="glass-card p-3.5 border border-white/10 bg-slate-900/80 space-y-1">
+                <div className="flex items-center gap-2 text-purple-400 font-bold text-xs">
+                  <Icon className="w-4 h-4" />
+                  <span>{label}</span>
+                </div>
+                <p className="text-[11px] text-slate-300 font-medium">{desc}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Venue Photo Showcase Grid */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-3 aspect-auto sm:aspect-[16/8] rounded-2xl overflow-hidden border border-white/10 relative shadow-2xl bg-slate-950">
             
             {/* Main Cover Photo (Left 7 cols) */}
@@ -299,46 +357,48 @@ export default function HomePage() {
             <button
               type="button"
               onClick={() => scrollTo('gallery')}
-              className="absolute bottom-4 right-4 bg-slate-900/90 hover:bg-slate-800 backdrop-blur-md text-white border border-white/20 px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-2 shadow-2xl transition-all"
+              className="absolute bottom-4 right-4 bg-slate-900/90 hover:bg-slate-800 backdrop-blur-md text-white border border-white/20 px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 shadow-2xl transition-all cursor-pointer"
             >
               <Grid className="w-4 h-4 text-purple-400" />
               <span>Show all 12 photos</span>
             </button>
           </div>
 
-          {/* Main Stage Grid: Host Summary LEFT + Sticky Reservation Card RIGHT */}
+          {/* Main Stage Grid: Venue Specs LEFT + Sticky Reservation Widget RIGHT */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-4">
 
-            {/* ── LEFT COLUMN: Property Overview & Highlights ── */}
+            {/* ── LEFT COLUMN: Flat Overview & Specs Summary ── */}
             <div className="lg:col-span-7 space-y-8">
               
-              {/* Property Meta Details */}
-              <div className="border-b border-white/10 pb-6 flex items-center justify-between">
-                <div>
-                  <h2 className="text-xl font-bold text-white font-heading">
-                    Entire rental unit hosted by Rent-A-Vibe Team
-                  </h2>
-                  <p className="text-xs text-slate-300 mt-1 font-medium">
-                    15–22 guests · 2 master bedrooms · 3 beds · 2 bathrooms · Private terrace
-                  </p>
+              {/* Flat Meta Summary */}
+              <div id="specs" className="scroll-mt-24 space-y-4">
+                <div className="border-b border-white/10 pb-4 flex items-center justify-between">
+                  <div>
+                    <span className="badge bg-purple-500/20 text-purple-300 border border-purple-500/30 text-xs font-bold mb-1">
+                      02. SPECIFICATIONS & RULES
+                    </span>
+                    <h2 className="text-xl font-bold text-white font-heading">
+                      Property Blueprint & Guest Capacity
+                    </h2>
+                    <p className="text-xs text-slate-300 mt-1 font-medium">
+                      15–22 guests · 2 AC Master Bedrooms · 3 Queen Beds · 2 Bathrooms · Private Terrace
+                    </p>
+                  </div>
                 </div>
-                <div className="w-12 h-12 rounded-full bg-purple-950/80 border border-purple-500/40 text-purple-300 flex items-center justify-center font-extrabold text-sm shrink-0 shadow-md">
-                  RAV
-                </div>
-              </div>
 
-              {/* Venue Tabs: Highlights, Sleeping Setup & Ratings Breakdown */}
-              <VenueDetailTabs
-                capacity_max={venue.capacity_max}
-                capacity_recommended={venue.capacity_recommended}
-                area={venue.area}
-                full_address={venue.full_address}
-                house_rules={venue.house_rules}
-              />
+                {/* Venue Detail Tabs */}
+                <VenueDetailTabs
+                  capacity_max={venue.capacity_max}
+                  capacity_recommended={venue.capacity_recommended}
+                  area={venue.area}
+                  full_address={venue.full_address}
+                  house_rules={venue.house_rules}
+                />
+              </div>
 
             </div>
 
-            {/* ── RIGHT COLUMN: Sticky Reservation Card ── */}
+            {/* ── RIGHT COLUMN: Sticky Reservation Widget ── */}
             <div className="lg:col-span-5 sticky top-24">
               <div className="cyber-glass p-6 rounded-2xl border border-purple-500/30 shadow-2xl space-y-5">
                 
@@ -415,26 +475,29 @@ export default function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════════
-          EXPERIENCE ZONES SECTION (Clean Cards Grid)
+          SECTION 03: EXPERIENCE ZONES SECTION
       ══════════════════════════════════════════ */}
-      <section id="included" className="py-12 sm:py-20 relative z-10 border-b border-white/10">
+      <section id="included" className="py-12 sm:py-20 relative z-10 border-b border-white/10 scroll-mt-20">
         <div className="container-page">
           
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-4">
             <div>
               <span className="badge bg-purple-500/20 text-purple-300 border border-purple-500/30 text-xs px-3 py-1 font-bold">
-                WHAT'S INCLUDED IN FLAT
+                03. PRE-INSTALLED HARDWARE
               </span>
               <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mt-2 font-heading">
                 6 Immersive <span className="text-gradient-purple">Experience Zones.</span>
               </h2>
+              <p className="text-slate-300 text-xs sm:text-sm mt-1.5">
+                Every zone inside the flat is tested, tuned, and 100% included in your rental price.
+              </p>
             </div>
             
             <div className="flex items-center gap-2">
               <button
                 type="button"
                 onClick={() => scrollSection(zonesRef, 'left')}
-                className="p-3 rounded-xl bg-slate-900 border border-white/10 text-slate-300 hover:border-purple-500 hover:text-white transition-colors shadow-sm"
+                className="p-3 rounded-xl bg-slate-900 border border-white/10 text-slate-300 hover:border-purple-500 hover:text-white transition-colors shadow-sm cursor-pointer"
                 aria-label="Previous zone"
               >
                 <ChevronLeft className="w-5 h-5" />
@@ -442,7 +505,7 @@ export default function HomePage() {
               <button
                 type="button"
                 onClick={() => scrollSection(zonesRef, 'right')}
-                className="p-3 rounded-xl bg-slate-900 border border-white/10 text-slate-300 hover:border-purple-500 hover:text-white transition-colors shadow-sm"
+                className="p-3 rounded-xl bg-slate-900 border border-white/10 text-slate-300 hover:border-purple-500 hover:text-white transition-colors shadow-sm cursor-pointer"
                 aria-label="Next zone"
               >
                 <ChevronRight className="w-5 h-5" />
@@ -514,14 +577,46 @@ export default function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════════
-          ADD-ONS & CATERING SECTION
+          SECTION 04: DEDICATED DIRECT BOOKING CONTROL PANEL
       ══════════════════════════════════════════ */}
-      <section id="addons" className="py-12 sm:py-20 relative z-10 border-b border-white/10">
+      <section id="booking" className="py-12 sm:py-20 relative z-10 border-b border-white/10 scroll-mt-20">
+        <div className="container-page max-w-4xl">
+          <div className="cyber-glass p-6 sm:p-10 rounded-2xl border border-purple-500/30 shadow-2xl">
+            <div className="text-center max-w-xl mx-auto mb-6">
+              <span className="badge bg-purple-500/20 text-purple-300 border border-purple-500/30 text-xs px-3 py-1 font-bold">
+                04. INSTANT RESERVATION
+              </span>
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mt-2 font-heading">
+                Reserve The <span className="text-gradient-purple">Dwarka Party Flat.</span>
+              </h2>
+              <p className="text-slate-300 text-xs sm:text-sm mt-1.5">
+                Select your celebration date and time slot below to lock your reservation directly.
+              </p>
+            </div>
+
+            <VenueBookingForm
+              venueId={venue.id}
+              venueName={venue.name}
+              weekdayPricePaise={venue.weekday_price_paise}
+              weekendPricePaise={venue.weekend_price_paise}
+              basePricePaise={venue.base_price_paise}
+              depositPaise={venue.security_deposit_paise}
+              capacityMax={venue.capacity_max}
+              capacityRecommended={venue.capacity_recommended}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
+          SECTION 05: ADD-ONS & CATERING
+      ══════════════════════════════════════════ */}
+      <section id="addons" className="py-12 sm:py-20 relative z-10 border-b border-white/10 scroll-mt-20">
         <div className="container-page">
           
           <div className="text-center max-w-2xl mx-auto mb-10">
             <span className="badge bg-purple-500/20 text-purple-300 border border-purple-500/30 text-xs px-3 py-1 font-bold">
-              PARTY ADD-ONS & CATERING
+              05. OPTIONAL EVENT PACKS
             </span>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mt-2 font-heading">
               Curated Event <span className="text-gradient-purple">Add-Ons.</span>
@@ -563,50 +658,18 @@ export default function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════════
-          DEDICATED FULL-WIDTH BOOKING SECTION
+          SECTION 06: GUEST REVIEWS
       ══════════════════════════════════════════ */}
-      <section id="booking" className="py-12 sm:py-20 relative z-10 border-b border-white/10 scroll-mt-20">
-        <div className="container-page max-w-4xl">
-          <div className="cyber-glass p-6 sm:p-10 rounded-2xl border border-purple-500/30 shadow-2xl">
-            <div className="text-center max-w-xl mx-auto mb-6">
-              <span className="badge bg-purple-500/20 text-purple-300 border border-purple-500/30 text-xs px-3 py-1 font-bold">
-                ONLINE RESERVATION
-              </span>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mt-2 font-heading">
-                Reserve The <span className="text-gradient-purple">Dwarka Party Flat.</span>
-              </h2>
-              <p className="text-slate-300 text-xs sm:text-sm mt-1.5">
-                Select your celebration date and time slot below to reserve instantly.
-              </p>
-            </div>
-
-            <VenueBookingForm
-              venueId={venue.id}
-              venueName={venue.name}
-              weekdayPricePaise={venue.weekday_price_paise}
-              weekendPricePaise={venue.weekend_price_paise}
-              basePricePaise={venue.base_price_paise}
-              depositPaise={venue.security_deposit_paise}
-              capacityMax={venue.capacity_max}
-              capacityRecommended={venue.capacity_recommended}
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════
-          GUEST REVIEWS SECTION
-      ══════════════════════════════════════════ */}
-      <section id="reviews" className="py-12 sm:py-20 relative z-10 border-b border-white/10">
+      <section id="reviews" className="py-12 sm:py-20 relative z-10 border-b border-white/10 scroll-mt-20">
         <div className="container-page">
           <VenueReviewsSection />
         </div>
       </section>
 
       {/* ══════════════════════════════════════════
-          3D GALLERY & COMMUNITY PHOTO WALL
+          SECTION 07: COMMUNITY PHOTO WALL
       ══════════════════════════════════════════ */}
-      <section id="gallery" className="py-12 sm:py-20 relative z-10">
+      <section id="gallery" className="py-12 sm:py-20 relative z-10 scroll-mt-20">
         <div className="container-page">
           <GuestPhotoWall />
         </div>
