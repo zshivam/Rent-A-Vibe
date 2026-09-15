@@ -12,11 +12,30 @@ export function getStoredDemoUser(): DemoUser | null {
   if (typeof window === 'undefined') return null;
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return null;
-    return JSON.parse(raw) as DemoUser;
+    if (raw) return JSON.parse(raw) as DemoUser;
   } catch {
-    return null;
+    // ignore
   }
+
+  try {
+    const match = document.cookie.match(/(?:^|; )rentavibe_user_email=([^;]*)/);
+    if (match && match[1]) {
+      const email = decodeURIComponent(match[1]);
+      if (email) {
+        return {
+          id: `usr-cookie-${email}`,
+          email,
+          full_name: email.split('@')[0],
+          phone: '+91 98765 43210',
+          is_demo: true,
+        };
+      }
+    }
+  } catch {
+    // ignore
+  }
+
+  return null;
 }
 
 export function saveDemoUser(user: Partial<DemoUser> & { email: string }): DemoUser {

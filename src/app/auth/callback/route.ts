@@ -7,36 +7,58 @@ export async function GET(request: Request) {
   const code = searchParams.get('code');
   const next = searchParams.get('next') ?? '/dashboard';
 
-  if (code) {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || '';
+  const supabaseKey =
+    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+    process.env.SUPABASE_PUBLISHABLE_KEY ||
+    '';
+
+  if (code && supabaseUrl && supabaseKey) {
     const cookieStore = await cookies();
-    const supabase = createServerClient(
-      (process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL)!,
-      (process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
-        process.env.SUPABASE_PUBLISHABLE_KEY)!,
-      {
+    const response = NextResponse.redirect(`${origin}${next}`);
+
+    try {
+      const supabase = createServerClient(supabaseUrl, supabaseKey, {
         cookies: {
           getAll() {
             return cookieStore.getAll();
           },
           setAll(cookiesToSet) {
-            try {
-              cookiesToSet.forEach(({ name, value, options }) =>
-                cookieStore.set(name, value, options)
-              );
-            } catch {
-              // Ignore inside Server Component / Route Handler if headers already sent
-            }
+            cookiesToSet.forEach(({ name, value, options }) => {
+              try {
+                cookieStore.set(name, value, options);
+              } catch {
+                // ignore
+              }
+              try {
+                response.cookies.set(name, value, options);
+              } catch {
+                // ignore
+              }
+            });
           },
         },
+      });
+
+      const { error } = await supabase.auth.exchangeCodeForSession(code);
+      if (!error) {
+        const { data } = await supabase.auth.getUser();
+        if (data?.user?.email) {
+          response.cookies.set('rentavibe_user_email', data.user.email, {
+            path: '/',
+            maxAge: 604800,
+            sameSite: 'lax',
+          });
+        }
+        return response;
       }
-    );
-    const { error } = await supabase.auth.exchangeCodeForSession(code);
-    if (!error) {
-      return NextResponse.redirect(`${origin}${next}`);
+    } catch {
+      // Fallthrough to redirect below
     }
   }
 
-  // Return the user to an error page or login with instructions
+  // Return the user to login with helpful status query
   return NextResponse.redirect(`${origin}/auth/login?error=auth-callback-failed`);
 }
+

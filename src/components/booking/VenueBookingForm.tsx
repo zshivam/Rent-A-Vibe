@@ -26,6 +26,7 @@ import {
   Info,
 } from 'lucide-react';
 import { getStoredDemoUser } from '@/lib/auth-helpers';
+import { saveBookingToStorage } from '@/lib/booking-helpers';
 
 interface VenueBookingFormProps {
   venueId: string;
@@ -196,6 +197,24 @@ export function VenueBookingForm({
       }
 
       const order = json.data;
+
+      // Always save booking to local state & storage so it immediately reflects in Dashboard
+      saveBookingToStorage({
+        id: order.bookingId,
+        venue_id: venueId,
+        venue_name: venueName,
+        booking_date: selectedDate,
+        slot_tier_id: selectedSlotTier.id,
+        slot_tier_name: selectedSlotTier.name,
+        time_window: selectedSlotTier.time_window,
+        guest_count: guestCount,
+        selected_add_ons: selectedAddOns,
+        rental_fee_paise: order.rentalFeePaise || rentalFee,
+        add_ons_fee_paise: order.addOnsFeePaise || addOnsFee,
+        deposit_paise: order.depositPaise || depositPaise,
+        total_amount_paise: order.amount || totalAmount,
+        status: 'confirmed',
+      });
 
       // 2. If test placeholder keys, simulate instant confirmation
       if (order.keyId.includes('placeholder') || order.keyId.startsWith('rzp_test_placeholder')) {
