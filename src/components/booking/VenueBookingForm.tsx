@@ -80,8 +80,8 @@ const INCLUDED_BOOKING_FEATURES = [
   {
     icon: Wifi,
     name: 'High-Speed Wi-Fi & Backup',
-    summary: '300 Mbps fiber internet, inverter power backup & party board games',
-    tag: 'Wi-Fi & Games',
+    summary: '300 Mbps fiber internet, inverter power backup & card/board games (Uno, Jenga)',
+    tag: 'Wi-Fi & Board Games',
   },
 ];
 

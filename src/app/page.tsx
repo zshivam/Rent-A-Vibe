@@ -106,11 +106,11 @@ const EXPERIENCE_ZONES = [
     icon: Users,
   },
   {
-    tag: 'High-Speed Wi-Fi',
-    title: '300 Mbps Wi-Fi & Game Arena',
-    desc: 'High-speed fiber internet, full power backup, Uno, Jenga, Cards & board games included.',
+    tag: 'Wi-Fi & Board Games',
+    title: '300 Mbps Wi-Fi & Board Games Lounge',
+    desc: 'High-speed 300 Mbps fiber internet, full power inverter backup, Uno, Jenga, Playing Cards & classic board games included.',
     badge: '100% INCLUDED',
-    image: '/images/boxes/gaming-arena.jpg',
+    image: '/images/boxes/rooftop-chill.jpg',
     icon: Wifi,
   },
 ];
