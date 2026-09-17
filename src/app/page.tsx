@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import { FLAGSHIP_VENUE, getMockDeliveryKits } from '@/lib/mock-data';
 import { VenueBookingForm } from '@/components/booking/VenueBookingForm';
 import { BookingModal } from '@/components/booking/BookingModal';
+import { InquiryModal } from '@/components/booking/InquiryModal';
 import { GuestPhotoWall } from '@/components/community/GuestPhotoWall';
 import { VenueReviewsSection } from '@/components/reviews/VenueReviewsSection';
 import { VenueDetailTabs } from '@/components/venue/VenueDetailTabs';
@@ -128,6 +129,7 @@ export default function HomePage() {
 
   // States
   const [bookingModalOpen, setBookingModalOpen] = useState(false);
+  const [inquiryModalOpen, setInquiryModalOpen] = useState(false);
   const [saved, setSaved] = useState(false);
   const [copied, setCopied] = useState(false);
 
@@ -172,11 +174,16 @@ export default function HomePage() {
       {/* ── AMBIENT CANVAS BACKGROUND ── */}
       <PartyVibeCanvas />
 
-      {/* ── BOOKING MODAL POPUP ── */}
+      {/* ── BOOKING & INQUIRY MODALS ── */}
       <BookingModal
         isOpen={bookingModalOpen}
         onClose={() => setBookingModalOpen(false)}
         venue={venue}
+      />
+      <InquiryModal
+        isOpen={inquiryModalOpen}
+        onClose={() => setInquiryModalOpen(false)}
+        venueName={venue.name}
       />
 
       {/* ── STICKY SECTION DOCK / QUICK-NAV ── */}
@@ -278,12 +285,20 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Share & Save Action Buttons */}
-            <div className="flex items-center gap-2 shrink-0">
+            {/* Share, Save & Direct Inquiry Action Buttons */}
+            <div className="flex items-center gap-2 shrink-0 flex-wrap">
+              <button
+                type="button"
+                onClick={() => setInquiryModalOpen(true)}
+                className="py-2.5 px-4 rounded-xl bg-purple-950/80 hover:bg-purple-900 border border-purple-500/40 text-xs font-bold text-purple-200 flex items-center gap-1.5 transition-all shadow-md cursor-pointer"
+              >
+                <MessageCircle className="w-4 h-4 text-purple-400" />
+                <span>Ask Host / Inquire</span>
+              </button>
               <button
                 type="button"
                 onClick={handleShare}
-                className="btn-ghost text-xs py-2.5 px-4 flex items-center gap-1.5"
+                className="btn-ghost text-xs py-2.5 px-4 flex items-center gap-1.5 cursor-pointer"
               >
                 <Share2 className="w-4 h-4 text-slate-300" />
                 <span>{copied ? 'Link Copied!' : 'Share Page'}</span>
@@ -291,7 +306,7 @@ export default function HomePage() {
               <button
                 type="button"
                 onClick={() => setSaved(!saved)}
-                className={`btn-ghost text-xs py-2.5 px-4 flex items-center gap-1.5 ${
+                className={`btn-ghost text-xs py-2.5 px-4 flex items-center gap-1.5 cursor-pointer ${
                   saved ? 'text-pink-400 border-pink-500/40 bg-pink-500/10' : ''
                 }`}
               >
