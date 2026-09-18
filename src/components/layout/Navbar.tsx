@@ -2,11 +2,11 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { createClient } from '@/utils/supabase/client';
 import { getStoredDemoUser, clearStoredDemoUser, DemoUser } from '@/lib/auth-helpers';
 import { 
-  Zap, 
   Home, 
   Package, 
   HelpCircle, 
@@ -117,10 +117,15 @@ export function Navbar() {
             href="/" 
             className="flex items-center gap-3 group shrink-0"
           >
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-purple-600 via-indigo-600 to-purple-400 p-0.5 shadow-[0_0_20px_rgba(168,85,247,0.4)] group-hover:scale-105 transition-all duration-300 flex items-center justify-center">
-              <div className="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
-                <Zap className="w-5 h-5 text-purple-400 fill-purple-400/20 group-hover:rotate-12 transition-transform" />
-              </div>
+            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl overflow-hidden shadow-[0_0_20px_rgba(168,85,247,0.45)] group-hover:scale-105 group-hover:shadow-[0_0_28px_rgba(168,85,247,0.6)] transition-all duration-300 ring-1 ring-purple-500/30">
+              <Image
+                src="/logo.jpg"
+                alt="Rent-A-Vibe Logo"
+                width={44}
+                height={44}
+                className="w-full h-full object-cover"
+                priority
+              />
             </div>
             
             <div className="flex flex-col">

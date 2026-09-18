@@ -40,8 +40,14 @@ export const metadata: Metadata = {
     siteName:    'Rent-A-Vibe',
     title:       'Rent-A-Vibe — Party Flat & Venue in Dwarka, Delhi',
     description: 'Book our 2BHK party flat with karaoke, cinema projector, DJ sound & overnight stay.',
+    images: [{ url: '/logo.jpg', width: 512, height: 512, alt: 'Rent-A-Vibe Logo' }],
   },
   robots: { index: true, follow: true },
+  icons: {
+    icon: '/logo.jpg',
+    apple: '/logo.jpg',
+    shortcut: '/logo.jpg',
+  },
 };
 
 
